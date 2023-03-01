@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "ExampleTest" thread-count="10" parallel="methods">
+   <test name = "ExampleTestName">
+      <classes>
+         <class name = "com.sillywater.taf.tests.ExampleTest">
+         	<methods>
+      			  <include name="test00_prepare" />
+      			  <include name="test01_dosomething" />
+      			  <include name="test02_dosomething" />
+      			  <include name="test03_dosomething" />
+      		</methods>
+         </class>
+      </classes>
+   </test>
+</suite>

@@ -1,0 +1,26 @@
+{
+   "test.type": "abc",
+   "workers":[  
+      {  
+      	 "host":"192.168.1.1",
+         "name":"use1@exampletest.com",
+         "password":"PassW()rd",
+   	 	 "attribute1":"value1"
+      },
+      {  
+      	 "host":"192.168.1.2",
+         "name":"use2@exampletest.com",
+         "password":"PassW()rd",
+   	 	 "attribute1":"value1"
+      },
+      {  
+      	 "host":"192.168.1.3",
+         "name":"use3@exampletest.com",
+         "password":"PassW()rd",
+   	 	 "attribute2":["value1", "value2"]
+      }
+   ],
+   "key1":"value1",
+   "key2":"value2",
+   "test_suite":"test_01.xml"
+}

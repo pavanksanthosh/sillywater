@@ -13,7 +13,7 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
 
-public class CustomListener extends TestListenerAdapter implements ITestListener, ISuiteListener, IInvokedMethodListener {
+public class LogContextManager extends TestListenerAdapter implements ITestListener, ISuiteListener, IInvokedMethodListener {
 
 
 	@Override
@@ -28,26 +28,26 @@ public class CustomListener extends TestListenerAdapter implements ITestListener
 
 	@Override
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-		CLogger.getLogger().setContextTest(Reporter.getCurrentTestResult().getTestContext());
-		CLogger.getLogger().setContextClass(Reporter.getCurrentTestResult().getMethod().getTestClass());
-		CLogger.getLogger().setContextMethod(Reporter.getCurrentTestResult().getMethod());
+		ContextLogger.getLogger().setContextTest(Reporter.getCurrentTestResult().getTestContext());
+		ContextLogger.getLogger().setContextClass(Reporter.getCurrentTestResult().getMethod().getTestClass());
+		ContextLogger.getLogger().setContextMethod(Reporter.getCurrentTestResult().getMethod());
 		
 		Reporter.setCurrentTestResult(testResult);
 	}
 
 	@Override
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-		CLogger.getLogger().flushAll();
+		ContextLogger.getLogger().flushAll();
 		if (testResult.getThrowable() != null) {
 			StringWriter sw = new StringWriter();
 			testResult.getThrowable().printStackTrace(new PrintWriter(sw));
-			CLogger.getLogger().reportException(testResult.getThrowable());
+			ContextLogger.getLogger().reportException(testResult.getThrowable());
 		}
 
-		testResult.setAttribute("logfile", CLogger.getLogger().getContextLogFile());
-		testResult.setAttribute("screenshots", CLogger.getLogger().getContextScreenShotsDir());
-		testResult.setAttribute("relateivelogpath", CLogger.getLogger().getFromContext("relateivelogpath"));
-		CLogger.getLogger().clearContext();
+		testResult.setAttribute("logfile", ContextLogger.getLogger().getContextLogFile());
+		testResult.setAttribute("screenshots", ContextLogger.getLogger().getRelativeSSDirPath());
+		testResult.setAttribute("relateivelogpath", ContextLogger.getLogger().getFromContext("relateivelogpath"));
+		ContextLogger.getLogger().clearContext();
 	}
 
 	@Override

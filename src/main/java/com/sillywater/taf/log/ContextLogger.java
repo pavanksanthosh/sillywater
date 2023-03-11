@@ -30,21 +30,21 @@ import org.testng.Reporter;
 
 import com.sillywater.taf.base.Configuration;
 
-public class CLogger {
-	private static CLogger logger = null;
+class ContextLogger {
+	private static ContextLogger logger = null;
 	protected String home_dir;
-	protected static final String log_file = "TestRunner.log";
 	protected LogLevel logLevel = LogLevel.FINEST;
 	private transient ThreadLocal<HashMap<String, Object>> context = new InheritableThreadLocal<HashMap<String, Object>> ();
 	private final int MAX_LOG_SIZE = 1024;
+	protected static final String log_file = "TestRunner.log";
 
-	private CLogger(){
+	private ContextLogger(){
 		init();
 	}
 	
-	public static CLogger getLogger() {
+	public static ContextLogger getLogger() {
 		if(logger == null){
-			logger = new CLogger();
+			logger = new ContextLogger();
 		}
 		try {
 			logger.logLevel = LogLevel.getLogLevel(Configuration.getConfig().getRunnerProperty("log_level").toLowerCase());
@@ -367,40 +367,6 @@ public class CLogger {
 		return true;
 	}
 	//--------------------------------------------------------------------------------
-
-	protected synchronized void write(String message) {
-		StringBuilder log;
-		if (this.isContextEnabled()) {
-			log = (this.getContextLog() == null) ? new StringBuilder() : this.getContextLog();
-			if (log.append(this.getLogStamp() + message + "\n").length() < this.MAX_LOG_SIZE) {
-				this.setContextLog(log);
-				return;
-			}
-			flush(this.getCurrentLogFile(), log.toString());
-			this.setContextLog(new StringBuilder());
-		} else {
-			System.out.print(message);		
-		}
-	}
-	
-	private void flush(String logFile, String message) {
-        try {
-			FileWriter fw = new FileWriter(new File(logFile).getAbsoluteFile(), true);
-			fw.write(message);
-			fw.close();
-		} catch (IOException e) {
-			System.out.println("[CLogger][write] Unable to create file " + logFile);
-			e.printStackTrace();
-			return;
-		}
-	}
-	
-	protected void flushAll() {
-		if(this.getContextLog() != null && this.getContextLog().length() > 0){
-			this.flush(this.getCurrentLogFile(), this.getContextLog().toString());
-			this.setContextLog(null);
-		}		
-	}
 	
 	private synchronized String getCurrentLogDir() {
 		if(!this.isContextEnabled()) {
@@ -489,6 +455,10 @@ public class CLogger {
 		this.setContextLogFile(logFile);
 		return logFile;
 	}
+	
+	String getRelativeLogPath() {
+		return getCurrentLogFile().substring(this.getReportDir().length() + 1);
+	}
 
 	private String getCurrentScreenShotDir() {
 		if(this.getContextScreenShotsDir() != null && !this.getContextScreenShotsDir().isEmpty()){
@@ -500,6 +470,44 @@ public class CLogger {
 		}
 		this.setContextScreenShotsDir(ssDir);
 		return ssDir;
+	}
+	
+	String getRelativeSSDirPath() {
+		return getCurrentScreenShotDir().substring(this.getReportDir().length() + 1);
+	}
+
+	protected synchronized void write(String message) {
+		StringBuilder log;
+		if (this.isContextEnabled()) {
+			log = (this.getContextLog() == null) ? new StringBuilder() : this.getContextLog();
+			if (log.append(this.getLogStamp() + message + "\n").length() < this.MAX_LOG_SIZE) {
+				this.setContextLog(log);
+				return;
+			}
+			flush(this.getCurrentLogFile(), log.toString());
+			this.setContextLog(new StringBuilder());
+		} else {
+			System.out.print(message);		
+		}
+	}
+	
+	private void flush(String logFile, String message) {
+        try {
+			FileWriter fw = new FileWriter(new File(logFile).getAbsoluteFile(), true);
+			fw.write(message);
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("[CLogger][write] Unable to create file " + logFile);
+			e.printStackTrace();
+			return;
+		}
+	}
+	
+	protected void flushAll() {
+		if(this.getContextLog() != null && this.getContextLog().length() > 0){
+			this.flush(this.getCurrentLogFile(), this.getContextLog().toString());
+			this.setContextLog(null);
+		}		
 	}
 
 	private static class CFormatter extends Formatter {

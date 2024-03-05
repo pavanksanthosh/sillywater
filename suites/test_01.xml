@@ -1,8 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "ExampleTest" thread-count="10" parallel="methods">
-   <test name = "ExampleTestName">
+<suite name = "SuiteOne" thread-count="10" parallel="methods"> 
+	<test name = "SetOne">
       <classes>
          <class name = "com.sillywater.taf.tests.ExampleTest">
          	<methods>
@@ -12,6 +12,26 @@
       			  <include name="test03_dosomething" />
       		</methods>
          </class>
+         <class name = "com.sillywater.taf.tests.ExampleTest2">
+         	<methods>
+      			  <include name="test200_prepare" />
+      			  <include name="test201_dosomething" />
+      			  <include name="test202_dosomething" />
+      			  <include name="test203_dosomething" />
+      		</methods>
+         </class>
       </classes>
-   </test>
+   	</test>
+	<test name = "SetTwo">
+      <classes>
+         <class name = "com.sillywater.taf.tests.ExampleTest2">
+         	<methods>
+      			  <include name="test200_prepare" />
+      			  <include name="test201_dosomething" />
+      			  <include name="test202_dosomething" />
+      			  <include name="test203_dosomething" />
+      		</methods>
+         </class>
+      </classes>
+   	</test>
 </suite>

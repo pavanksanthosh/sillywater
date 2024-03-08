@@ -1,0 +1,131 @@
+body {
+    background-color: whitesmoke;
+    margin: 0;
+    overflow-x: auto; /* Add horizontal scrollbar if content overflows horizontally */
+}
+
+.top-banner { 
+    background-color: #01836D; 
+    #border-radius: 10px; 
+    padding: 5px;    
+    margin: 0 0 5px 0; 
+    text-align: center; 
+    color: #ffffff;  
+}
+
+.top-banner-title { 
+    padding: 5px;    
+    margin: 0 0 5px 0; 
+    font-family: Arial, Times New Roman, Times, serif; 
+    text-align: center; 
+    font-size: large;
+    font-size: 24px;
+    color: #ffffff;  
+}
+
+.top-banner-time { 
+    font-family: Arial, Times New Roman, Times, serif; 
+    font-size: 16px;
+}
+
+.left-panel {
+    position: absolute;
+    width: 30%; /* Take up 30% of the container width */
+    min-height: 90vh; /* Ensure minimum height */
+    max-height: 90vh;
+    margin: 2px 0 10px 5px; 
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px; 
+    overflow: auto; /* Add vertical scrollbar if content overflows */
+    border: 1px solid #ccc;
+}
+
+.right-panel {
+    position: absolute;
+    left: 31%; 
+    right: 5px;
+    min-height: 90vh; /* Ensure minimum height */
+    max-height: 90vh;
+    margin: 2px 5px 10px 22px ; 
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+.AllSuiteTreeSwitcher {
+    margin-left: 10px;
+    text-align: left;
+    color: #333333; /* Text color */
+    background-color: #b2b2b2; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+.TestSuiteTreeSwitcher {
+    text-align: left;
+    margin-left: 20px;
+    color: #333333; /* Text color */
+    background-color: #b2b2b2; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+.TestSetTreeSwitcher {
+    text-align: left;
+    margin-left: 30px;
+}
+.TestTreeSwitcher {
+    text-align: left;
+    margin-left: 40px;
+}
+.chart-canvas {
+    width: auto;
+    height: 40vh;
+}
+.popupwindow { 
+    COLOR: #000000; 
+    background: #D9DCD9; 
+    border-radius: 6px; 
+    position: absolute; 
+    top: 5%; left: 15%;  width: 60%; height: 80%; z-index:60; 
+    text-align: left; padding: 0 30px 30px; visibility: 
+    hidden; transition: transform 0.4s top 0.4s; 
+    BORDER-RIGHT: #8b8b8b 1px solid; 
+    BORDER-TOP: #8b8b8b 1px solid; 
+    BORDER-LEFT: #8b8b8b 1px solid; 
+    BORDER-BOTTOM: #8b8b8b 1px solid;
+}
+.openpopupwindow { 
+    visibility: visible; overflow-y: scroll;
+}
+.popupwindow h3 { 
+    font-size: 16px; font-weight: bold; margin: 30px 0 10px; COLOR: #000000;
+}
+.popupwindow button { 
+    float: right; width: 52px; margin-top: 50px; padding: 10px 0; 
+    background: #AEAFAE; 
+    color: #232B5A; 
+    border: 0; 
+    outline: none; 
+    font-size: 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
+}
+.closepopupwindowbutton { 
+    color: #aaaaaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold; 
+    margin-bottom: 20px;
+    position: relative;
+}
+.closepopupwindow { 
+    color: #aaaaaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold; 
+}
+.closepopupwindow:hover, .closepopupwindow:focus { 
+    color: #000; text-decoration: none; cursor: pointer; 
+}

@@ -54,7 +54,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## Support
 
-For any questions, feedback, or support requests, please contact [your-email@example.com](mailto:your-email@example.com).
+For any questions, feedback, or support requests, please contact [pavan.vitla@gmail.com](mailto:pavan.vitla@gmail.com).
 
 Thank you for using the Java Automation Framework! Happy testing! 🚀
 ![Screenshot 2024-03-05 at 12 10 42 PM](https://github.com/pavanksanthosh/sillywater/assets/47290243/57bd78f5-ebe3-463c-bf5b-21aa17c3ae5e)
